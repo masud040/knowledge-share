@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Thumbnail from "../blogThumbnail/Blog";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -7,8 +8,7 @@ const Blogs = () => {
       const dataFetch = async () => {
         const res = await fetch("blog.json");
         const data = await res.json();
-        const blogs = data.blogs;
-        setBlogs(blogs);
+        setBlogs(data);
       };
       dataFetch();
     } catch (error) {
@@ -16,8 +16,10 @@ const Blogs = () => {
     }
   }, []);
   return (
-    <div className="my-5 grid grid-cols-3 gap-6">
-      {blogs.map((blog) => console.log(blog))}
+    <div className="col-span-3 md:col-span-2">
+      {blogs.map((blog) => (
+        <Thumbnail key={blog.id} blog={blog} />
+      ))}
     </div>
   );
 };
