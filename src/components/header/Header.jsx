@@ -1,4 +1,4 @@
-import myImage from "../../assets/masud.png";
+import myImage from "../../assets/profile.png";
 const Header = () => {
   return (
     <header className="flex justify-between items-center ring-1 ring-pink-500 px-6 py-2 rounded-xl mb-3">

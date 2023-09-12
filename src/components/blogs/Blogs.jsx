@@ -1,38 +1,23 @@
-import { useEffect, useState } from "react";
-import Blog from "../blogThumbnail/Blog";
+import Blog from "../blog/Blog";
 import PropTypes from "prop-types";
-
-const Blogs = ({ addBookmark, handleTime }) => {
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    try {
-      const dataFetch = async () => {
-        const res = await fetch("blog.json");
-        const data = await res.json();
-        setBlogs(data);
-      };
-      dataFetch();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+const Blogs = ({ blogs, handleBookmark, handleReadTime }) => {
   return (
-    <div className="col-span-3 sm:order-last md:order-first md:col-span-2">
+    <div className="my-7 col-span-3 md:col-span-2 order-last md:order-first">
       {blogs.map((blog) => (
         <Blog
           key={blog.id}
           blog={blog}
-          addBookmark={addBookmark}
-          handleTime={handleTime}
+          handleBookmark={handleBookmark}
+          handleReadTime={handleReadTime}
         />
       ))}
     </div>
   );
 };
-
 Blogs.propTypes = {
-  addBookmark: PropTypes.func.isRequired,
-  handleTime: PropTypes.func.isRequired,
+  blogs: PropTypes.array,
+  handleBookmark: PropTypes.func,
+  handleReadTime: PropTypes.func,
 };
 
 export default Blogs;
